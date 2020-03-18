@@ -1,10 +1,13 @@
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+/*Hansel Andre Lopez Montenegro 19026
+Algoritmos y Estructura de datos
+Hoja de trabajo 7
+
+Referencia de sitio utilizado como guia para implementacion de Binary Search Tree (BST): 
+https://algorithms.tutorialhorizon.com/binary-search-tree-complete-implementation/
+*/
 
 public class BinarySearchTree<E extends Comparable<E>> {
     public Node<E> root;
-    private ArrayList<String> list;
 	public BinarySearchTree(){
 		this.root = null;
     }
@@ -131,52 +134,14 @@ public class BinarySearchTree<E extends Comparable<E>> {
 				}
 			}
 		}
-	}
+    }
+    
 	public void displayInOrder(Node<E> root){
 		if(root!=null){
 			displayInOrder(root.left);
 			System.out.print(" " + root.data);
             displayInOrder(root.right);
 		}
-    }	
-
-    public String[] readText(){
-        list = new ArrayList<String>();
-        String[] parts = null;
-        String fileName = "text.txt";
-
-        String line = null;
-
-        try {
-
-            FileReader fileReader = 
-                new FileReader(fileName);
-
-            BufferedReader bufferedReader = 
-                new BufferedReader(fileReader);
-
-            while((line = bufferedReader.readLine()) != null) {
-                parts = line.split(" ");
-                /*
-                for(int n=0;n<parts.length;n++){
-                    list.add(parts[n]);
-                }
-                */
-            }
-            
-            bufferedReader.close();         
-        }
-        catch(FileNotFoundException ex) {
-            System.out.println(
-                "Unable to open file '" + 
-                fileName + "'");                
-        }
-        catch(IOException ex) {
-            System.out.println(
-                "Error reading file '" 
-                + fileName + "'");                  
-        }
-        return parts;
-    }       
+    }		
 }
 
