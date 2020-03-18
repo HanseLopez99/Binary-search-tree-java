@@ -1,5 +1,10 @@
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+
 public class BinarySearchTree<E extends Comparable<E>> {
-	public Node<E> root;
+    public Node<E> root;
+    private ArrayList<String> list;
 	public BinarySearchTree(){
 		this.root = null;
     }
@@ -7,7 +12,7 @@ public class BinarySearchTree<E extends Comparable<E>> {
     public Node<E> getRoot(){
         return this.root;
     }
-	
+
 	public boolean find(String id){
 		Node<E> current = root;
 		while(current!=null){
@@ -127,13 +132,51 @@ public class BinarySearchTree<E extends Comparable<E>> {
 			}
 		}
 	}
-	public void display(Node<E> root){
+	public void displayInOrder(Node<E> root){
 		if(root!=null){
-			display(root.left);
+			displayInOrder(root.left);
 			System.out.print(" " + root.data);
-			display(root.right);
+            displayInOrder(root.right);
 		}
-	}
-	
+    }	
+
+    public String[] readText(){
+        list = new ArrayList<String>();
+        String[] parts = null;
+        String fileName = "text.txt";
+
+        String line = null;
+
+        try {
+
+            FileReader fileReader = 
+                new FileReader(fileName);
+
+            BufferedReader bufferedReader = 
+                new BufferedReader(fileReader);
+
+            while((line = bufferedReader.readLine()) != null) {
+                parts = line.split(" ");
+                /*
+                for(int n=0;n<parts.length;n++){
+                    list.add(parts[n]);
+                }
+                */
+            }
+            
+            bufferedReader.close();         
+        }
+        catch(FileNotFoundException ex) {
+            System.out.println(
+                "Unable to open file '" + 
+                fileName + "'");                
+        }
+        catch(IOException ex) {
+            System.out.println(
+                "Error reading file '" 
+                + fileName + "'");                  
+        }
+        return parts;
+    }       
 }
 
