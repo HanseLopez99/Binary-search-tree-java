@@ -1,6 +1,3 @@
-import java.util.Iterator;
-import java.util.Comparator;
-
 public class BinarySearchTree<E extends Comparable<E>> {
 	public Node<E> root;
 	public BinarySearchTree(){
