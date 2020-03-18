@@ -2,49 +2,26 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class BinarySearchTreeTest<E> {
-	public Node<E> root;
+class BinarySearchTreeTest {
+	BinarySearchTree<String> bst = new BinarySearchTree<String>();
 
+	
 	@Test
-	public boolean find(String id){
-		Node<E> current = root;
-		while(current!=null){
-			if(current.data.compareTo(id) == 0){
-				return true;
-			}else if(current.data.compareTo(id) > 0){
-				current = current.left;
-			}else{
-				current = current.right;
-			}
-		}
-		return false;
+	void insertTest() {
+		boolean resultado = true;	
+		bst.insert("dog");
+		boolean esperado = true;
+		assertEquals(resultado,esperado);
+		
 	}
 	
 	@Test
-	public void insert(String id){
-		Node<E> newNode = new Node<E>(id);
-		if(root==null){
-			root = newNode;
-			return;
-		}
-		Node<E> current = root;
-		Node<E> parent = null;
-		while(true){
-			parent = current;
-			if(id.compareTo(current.data)<0){				
-				current = current.left;
-				if(current==null){
-					parent.left = newNode;
-					return;
-				}
-			}else{
-				current = current.right;
-				if(current==null){
-					parent.right = newNode;
-					return;
-				}
-			}
-		}
-    }
+	void findTest() {
+		boolean resultado = true;
+		resultado = bst.find("dog");
+		boolean esperado = false;
+		assertEquals(resultado,esperado);
+		
+	}
 
 }
